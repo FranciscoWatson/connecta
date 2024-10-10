@@ -1,0 +1,86 @@
+# React Native specific
+
+# Android/IntelliJ
+android/.gradle/
+android/app/build/
+android/local.properties
+android/.idea/
+android/.vscode/
+android/build/
+android/app/app.iml
+
+# iOS/Xcode
+ios/Pods/
+ios/build/
+ios/DerivedData/
+ios/.vscode/
+ios/*.xcodeproj/
+ios/*.xcworkspace/
+ios/*.xcuserdata/
+
+# Ignore Pods folder if you're using CocoaPods
+ios/Pods/
+
+# Metro Bundler
+.expo/
+.expo-shared/
+.vscode/
+
+# Build artifacts
+build/
+dist/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# React Native Packager
+# Generated files during packaging or builds
+*.packager
+*.js.map
+*.map
+
+# Android specific packaging
+/android/app/*.keystore
+
+# Node modules (Node.js dependencies)
+node_modules/
+
+# TypeScript build cache
+*.tsbuildinfo
+
+# Watchman
+.watchmanconfig
+
+# Mac system files
+.DS_Store
+*.swp
+*.swo
+
+# IDEs and editors
+.idea/
+.vscode/
+
+# Temporary files
+tmp/
+temp/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+.env.*.local
+
+# Jest testing
+/coverage/
+jest-output/
+
+# Fastlane (if you're using it for iOS/Android automation)
+/fastlane/report.xml
+/fastlane/Preview.html
+/fastlane/screenshots
+/fastlane/test_output
