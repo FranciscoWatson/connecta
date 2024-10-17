@@ -5,6 +5,9 @@ export const LightModeColors = {
     lightAccent: '#80ED99',  // Bright green
     background: '#C7F9CC',  // Light mint
     text: '#000000',  // Black text
+    text_button: '#F0F0F0',  // Pure white
+    bar: '#F0F0F0', // Pure white
+    border_input: '#141414', // Pure black
   };
   
   export const DarkModeColors = {
@@ -14,6 +17,9 @@ export const LightModeColors = {
     lightAccent: '#38A3A5',  // Teal
     background: '#57CC99',  // Light green
     text: '#FFFFFF',  // White text
+    text_button: '#F0F0F0',  // Pure white
+    bar: '#141414', // Pure black
+    border_input: '#F0F0F0', // Pure white
   };
   
   export const BlackWhiteColors = {
@@ -22,3 +28,4 @@ export const LightModeColors = {
   };
 
   export default LightModeColors;
+ 

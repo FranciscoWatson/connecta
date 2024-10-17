@@ -1,8 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import LightModeColors from '../styles/colors';
-import { BlackWhiteColors } from '../styles/colors';
+import { useTheme } from '../context/ThemeContext';
 import { useState } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -19,8 +18,98 @@ type LoginScreenNavigationProp = NativeStackNavigationProp<StackParamList, 'Logi
 
 const LoginScreen = () => {
   const navigation = useNavigation<LoginScreenNavigationProp>()
+  const { colors } = useTheme();
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: colors.bar,
+    },
+    logo: {
+      width: 225,
+      height: 167,
+      marginBottom: 10,
+    },
+    input: {
+      width: 357,
+      height: 55,
+      borderColor: colors.border_input,
+      borderWidth: 1,
+      borderRadius: 12,
+      paddingHorizontal: 15,
+      marginBottom: 10,
+    },
+    forgotPasswordText: {
+      alignSelf: 'flex-end',
+      marginRight: '10%',
+      color: colors.text,
+      marginBottom: 20,
+    },
+    loginButton: {
+      backgroundColor: colors.accent,
+      width: 357,
+      height: 64,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 12,
+      marginBottom: 15,
+    },
+    loginButtonText: {
+      color: colors.text_button,
+      fontSize: 20,
+      fontWeight: 'bold',
+    },
+    orText: {
+      color: colors.text,
+      marginVertical: 10,
+    },
+    googleButton: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      borderWidth: 1,
+      borderColor: colors.text,
+      borderRadius: 10,
+      paddingVertical: 10,
+      paddingHorizontal: 30,
+      marginBottom: 20,
+    },
+    googleButtonText: {
+      color: colors.text,
+      fontSize: 16,
+      marginLeft: 10,
+    },
+    signupText: {
+      color: colors.text,
+      marginTop: 20,
+      fontSize: 19,
+    },
+    signupLink: {
+      color: colors.text,
+      fontWeight: 'bold',
+      fontSize:19,
+    },
+    passwordContainer: {
+      width: 357,
+      height: 54,
+      flexDirection: 'row',
+      alignItems: 'center',
+      borderColor: colors.text,
+      borderWidth: 1,
+      borderRadius: 12,
+      marginBottom: 10,
+      paddingHorizontal: 10,
+    },
+    passwordInput: {
+      flex: 1,
+      height: 50,
+    },
+    iconContainer: {
+      padding: 8,
+    },
+  });
 
   return (
     <View style={styles.container}>
@@ -30,13 +119,13 @@ const LoginScreen = () => {
       />
       <TextInput
         placeholder="Email"
-        placeholderTextColor={LightModeColors.text}
+        placeholderTextColor={colors.text}
         style={styles.input}
       />
       <View style={styles.passwordContainer}>
         <TextInput
           placeholder="Password"
-          placeholderTextColor={LightModeColors.text}
+          placeholderTextColor={colors.text}
           secureTextEntry={!showPassword}
           style={styles.passwordInput}
           value={password}
@@ -49,7 +138,7 @@ const LoginScreen = () => {
           <Icon
             name={showPassword ? 'visibility' : 'visibility-off'}
             size={28}
-            color={LightModeColors.text}
+            color={colors.text}
           />
         </TouchableOpacity>
       </View>
@@ -71,94 +160,6 @@ const LoginScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: BlackWhiteColors.white,
-  },
-  logo: {
-    width: 225,
-    height: 167,
-    marginBottom: 10,
-  },
-  input: {
-    width: 357,
-    height: 55,
-    borderColor: BlackWhiteColors.black,
-    borderWidth: 1,
-    borderRadius: 12,
-    paddingHorizontal: 15,
-    marginBottom: 10,
-  },
-  forgotPasswordText: {
-    alignSelf: 'flex-end',
-    marginRight: '10%',
-    color: LightModeColors.text,
-    marginBottom: 20,
-  },
-  loginButton: {
-    backgroundColor: LightModeColors.accent,
-    width: 357,
-    height: 64,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 12,
-    marginBottom: 15,
-  },
-  loginButtonText: {
-    color: BlackWhiteColors.white,
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  orText: {
-    color: LightModeColors.text,
-    marginVertical: 10,
-  },
-  googleButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: BlackWhiteColors.black,
-    borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-    marginBottom: 20,
-  },
-  googleButtonText: {
-    color: LightModeColors.text,
-    fontSize: 16,
-    marginLeft: 10,
-  },
-  signupText: {
-    color: LightModeColors.text,
-    marginTop: 20,
-    fontSize: 19,
-  },
-  signupLink: {
-    color: BlackWhiteColors.black,
-    fontWeight: 'bold',
-    fontSize:19,
-  },
-  passwordContainer: {
-    width: 357,
-    height: 54,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderColor: BlackWhiteColors.black,
-    borderWidth: 1,
-    borderRadius: 12,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-  },
-  passwordInput: {
-    flex: 1,
-    height: 50,
-  },
-  iconContainer: {
-    padding: 8,
-  },
-});
+
 
 export default LoginScreen;
