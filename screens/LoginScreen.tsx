@@ -15,7 +15,7 @@ type StackParamList = {
   ForgotPassword: undefined;
 };
 
-type LoginScreenNavigationProp = NativeStackNavigationProp<StackParamList, 'Login'>;
+type LoginScreenNavigationProp = NativeStackNavigationProp<StackParamList, ' '>;
 
 const LoginScreen = () => {
   const navigation = useNavigation<LoginScreenNavigationProp>()
@@ -64,6 +64,7 @@ const LoginScreen = () => {
         <Text style={styles.googleButtonText}>Sign in with Google</Text>
       </TouchableOpacity>
         <Text style={styles.signupText}>Don't have an account? </Text>
+
       <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
         <Text style={styles.signupLink}>Sign up</Text>
       </TouchableOpacity>

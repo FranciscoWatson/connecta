@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useTheme } from '../context/ThemeContext';
 import LightModeColors from '../styles/colors';
 import { BlackWhiteColors } from '../styles/colors';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -12,11 +11,13 @@ type StackParamList = {
     Login: undefined;
     SignUp: undefined;
     ForgotPassword: undefined;
+    HomeSreen: undefined;
+
   };
 
- type WelcomeScreenNavigationProp = NativeStackNavigationProp<StackParamList, 'WelcomeScreen'>;
+ type WelcomeScreenNavigationProp = NativeStackNavigationProp<StackParamList, 'HomeSreen'>;
 
-    const WelcomeScreen: React.FC = () => {
+    const HomeScreen: React.FC = () => {
     const navigation = useNavigation<WelcomeScreenNavigationProp>();
 
 
@@ -78,4 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WelcomeScreen;
+export default HomeScreen;

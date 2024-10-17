@@ -4,6 +4,7 @@ const  Routes = {
     Login: 'Login',
     SignUp: 'SignUp',
     ForgotPassword: 'ForgotPassword',
+    HomeScreen:'HomeScreen',
   }
   
   export default Routes;

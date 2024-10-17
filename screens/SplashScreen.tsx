@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Image, StyleSheet, StatusBar, Text} from 'react-native';
 import { deviceWidth, deviceHeight } from '../utils/dimensions';
 import { useTheme } from '../context/ThemeContext';
-import Routes from '../navigation/Routes';
 import { useNavigation } from '@react-navigation/native';
 import { useEffect } from 'react';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
