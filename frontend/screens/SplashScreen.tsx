@@ -12,7 +12,7 @@ const SplashScreen: React.FC = () => {
     useEffect(() => {
         // Navega a la WelcomeScreen después de 3 segundos
         const timer = setTimeout(() => {
-            navigation.navigate(Routes.WelcomeScreen);
+            navigation.navigate(Routes.LoginStack);
         }, 3000);
 
         // Limpia el timeout si el componente se desmonta

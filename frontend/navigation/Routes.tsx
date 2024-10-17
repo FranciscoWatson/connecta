@@ -3,10 +3,10 @@ enum Routes {
   WelcomeScreen = "WelcomeScreen",
   LoginScreen = "LoginScreen",
   ForgotPasswordScreen = "ForgotPasswordScreen",
-  VerificationScreen = "VerificationScreen",
   NewPasswordScreen = "NewPasswordScreen",
   PasswordChangedScreen = "PasswordChangedScreen",
   CodeVerificationScreen = 'CodeVerificationScreen',
+  LoginStack = 'LoginStack'
 }
 
 export default Routes;
