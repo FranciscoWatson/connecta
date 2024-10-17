@@ -3,7 +3,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from '../screens/LoginScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import NewPasswordScreen from '../screens/NewPasswordScreen';
-import PasswordChangedScreen from '../screens/PasswordChangedScreen';
 import CodeVerificationScreen from '../screens/CodeVerificationScreen';
 import Routes from './Routes';
 import { useTheme } from '../context/ThemeContext';
@@ -14,7 +13,17 @@ const LoginStack: React.FC = () => {
     const { colors } = useTheme(); // Accedemos a los colores del tema
 
   return (
-    <Stack.Navigator initialRouteName="LoginScreen">
+    <Stack.Navigator initialRouteName="LoginScreen" screenOptions={{
+        headerStyle: {
+            backgroundColor: colors.background,
+          },
+          headerTintColor: colors.text, // Color for header icons and back arrow
+          headerTitleAlign: 'center', // Modern centered title
+          headerTitleStyle: {
+            fontWeight: '600',
+            fontSize: 18,
+          },
+      }}>
       <Stack.Screen
         name="LoginScreen"
         component={LoginScreen}
@@ -25,13 +34,6 @@ const LoginStack: React.FC = () => {
         component={ForgotPasswordScreen}
         options={{
           title: 'Forgot Password',
-          headerStyle: {
-            backgroundColor: colors.primary, // Color de fondo del header
-          },
-          headerTintColor: colors.textsfirstsscreens, // Color del texto y los íconos del header
-          headerTitleStyle: {
-            fontWeight: 'bold', // Estilo del título
-          },
         }}
       />
       <Stack.Screen 
@@ -39,31 +41,12 @@ const LoginStack: React.FC = () => {
         component={CodeVerificationScreen}
         options={{
             title: 'Code Verification',
-            headerStyle: {
-              backgroundColor: colors.primary, // Color de fondo del header
-            },
-            headerTintColor: colors.textsfirstsscreens, // Color del texto y los íconos del header
-            headerTitleStyle: {
-              fontWeight: 'bold', // Estilo del título
-            },
           }}
       />
       <Stack.Screen 
         name={Routes.NewPasswordScreen} 
         component={NewPasswordScreen} 
-        options={{ title: 'New Password' 
-            ,headerStyle: {
-            backgroundColor: colors.primary, // Color de fondo del header
-          },
-          headerTintColor: colors.textsfirstsscreens, // Color del texto y los íconos del header
-          headerTitleStyle: {
-            fontWeight: 'bold', // Estilo del título
-          }, }} 
-      />
-      <Stack.Screen 
-        name={Routes.PasswordChangedScreen} 
-        component={PasswordChangedScreen} 
-        options={{ headerShown: false }} 
+        options={{ title: 'New Password'}} 
       />
     </Stack.Navigator>
   );

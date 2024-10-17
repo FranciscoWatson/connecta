@@ -2,17 +2,17 @@ import React, { useEffect } from 'react';
 import { View, Image, StyleSheet, StatusBar, Text } from 'react-native';
 import { deviceWidth, deviceHeight } from '../utils/dimensions';
 import { useTheme } from '../context/ThemeContext';
-import { useNavigation } from '@react-navigation/native'; // Para la navegación
-import Routes from '../navigation/Routes'; // Importa las rutas
+import { useNavigation, NavigationProp } from '@react-navigation/native'; // Para la navegación
+import Routes, { RootStackParamList } from '../navigation/Routes';
 
 const SplashScreen: React.FC = () => {
     const { colors } = useTheme();
-    const navigation = useNavigation(); // Hook para navegar
+    const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     useEffect(() => {
         // Navega a la WelcomeScreen después de 3 segundos
         const timer = setTimeout(() => {
-            navigation.navigate(Routes.LoginStack);
+            navigation.navigate(Routes.WelcomeScreen);
         }, 3000);
 
         // Limpia el timeout si el componente se desmonta
@@ -21,10 +21,10 @@ const SplashScreen: React.FC = () => {
 
     return (
         <>
-            <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
-            <View style={[styles.container, { backgroundColor: colors.primary }]}>
+            <StatusBar barStyle="light-content" backgroundColor={colors.splashBackgroundColor} />
+            <View style={[styles.container, { backgroundColor: colors.splashBackgroundColor }]}>
                 <Image source={require('../assets/images/connecta-logo.png')} style={styles.logo} />
-                <Text style={[styles.title, { color: colors.textsfirstsscreens }]}>connecta</Text>
+                <Text style={[styles.title, { color: colors.textOnPrimary }]}>connecta</Text>
             </View>
         </>
     );

@@ -11,20 +11,20 @@ const WelcomeScreen: React.FC<{ navigation: any }> = ( ) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   return (
     <>
-      <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
+      <StatusBar barStyle="dark-content" backgroundColor={colors.background} />
       <View style={[styles.container, { backgroundColor: colors.background }]}>
         <Image source={require('../assets/images/connecta-logo.png')} style={styles.logo} />
         <TouchableOpacity
-          style={[styles.button, { backgroundColor: colors.accent }]}
-          onPress={() => navigation.navigate(Routes.LoginScreen)}
+          style={[styles.button, { backgroundColor: colors.primaryColor }]}
+          onPress={() => navigation.navigate(Routes.LoginStack)}
         >
-          <Text style={[styles.buttonText, { color: colors.textsfirstsscreens }]}>Login</Text>
+          <Text style={[styles.buttonText, { color: colors.textOnPrimary }]}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.button, { backgroundColor: colors.primary }]}
+          style={[styles.button, { backgroundColor: colors.secondaryColor }]}
           onPress={() => navigation.navigate(Routes.SignUpScreen)}
         >
-          <Text style={[styles.buttonText, { color: colors.textsfirstsscreens }]}>Sign Up</Text>
+          <Text style={[styles.buttonText, { color: colors.textOnPrimary }]}>Sign Up</Text>
         </TouchableOpacity>
       </View>
     </>
