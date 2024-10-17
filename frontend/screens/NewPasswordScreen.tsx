@@ -17,7 +17,7 @@ const NewPasswordScreen: React.FC = () => {
     // Después de un delay, cerramos el modal y navegamos de vuelta al LoginScreen
     setTimeout(() => {
       setShowModal(false);
-      navigation.navigate(Routes.LoginScreen);
+      navigation.navigate(Routes.HomeScreen);
     }, 1500); // Tiempo del delay
   };
 

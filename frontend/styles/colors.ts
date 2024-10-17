@@ -1,5 +1,6 @@
 export const LightModeColors = {
   text: '#141414',  // Texto principal en modo claro (negro)
+  secondaryText: '#141414',
   primaryColor: '#57CC99',  // Color verde claro para el botón principal
   accentColor: '#38A3A5',  // Color verde oscuro para botones secundarios
   secondaryColor: '#22577A',  // Color azul oscuro para acentos
@@ -10,7 +11,8 @@ export const LightModeColors = {
 };
 
 export const DarkModeColors = {
-  text: '#E0E0E0',  // Texto principal en modo oscuro (blanco o gris claro)
+  text: '#E0E0E0',
+  secondaryText: '#E0E0E0',  // Texto principal en modo oscuro (blanco o gris claro)
   primaryColor: '#459C76',  // Verde más oscuro para el botón principal
   secondaryColor: '#276F6B',  // Azul oscuro para botones secundarios
   accentColor: '#1B4F72',  // Azul más oscuro para acentos
