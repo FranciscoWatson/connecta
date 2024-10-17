@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
-import { useNavigation } from '@react-navigation/native';
-import Routes from '../navigation/Routes';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import Routes, { RootStackParamList } from '../navigation/Routes';
 
 const NewPasswordScreen: React.FC = () => {
   const { colors } = useTheme();
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const handleSubmit = () => {
     // Navegar primero a PasswordChangedScreen

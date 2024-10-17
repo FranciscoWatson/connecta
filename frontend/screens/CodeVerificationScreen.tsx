@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { useTheme } from '../context/ThemeContext';
-import Routes from '../navigation/Routes';
+import Routes, { RootStackParamList } from '../navigation/Routes';
 
 const CodeVerificationScreen: React.FC = () => {
   const { colors } = useTheme();
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>

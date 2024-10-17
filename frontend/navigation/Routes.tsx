@@ -1,3 +1,15 @@
+export type RootStackParamList = {
+  SplashScreen: undefined;
+  WelcomeScreen: undefined;
+  LoginScreen: undefined;
+  ForgotPasswordScreen: undefined;
+  NewPasswordScreen: undefined;
+  PasswordChangedScreen: undefined;
+  CodeVerificationScreen: undefined;
+  LoginStack: undefined;
+  SignUpScreen: undefined;
+};
+
 enum Routes {
   SplashScreen = "SplashScreen",
   WelcomeScreen = "WelcomeScreen",
@@ -6,7 +18,8 @@ enum Routes {
   NewPasswordScreen = "NewPasswordScreen",
   PasswordChangedScreen = "PasswordChangedScreen",
   CodeVerificationScreen = 'CodeVerificationScreen',
-  LoginStack = 'LoginStack'
+  LoginStack = 'LoginStack',
+  SignUpScreen = 'SignUpScreen'
 }
 
 export default Routes;

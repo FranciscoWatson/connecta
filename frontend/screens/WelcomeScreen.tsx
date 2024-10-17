@@ -2,11 +2,13 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, StatusBar } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 import { deviceWidth, deviceHeight } from '../utils/dimensions';
-import Routes from '../navigation/Routes';
+import Routes, { RootStackParamList } from '../navigation/Routes';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 
-const WelcomeScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+
+const WelcomeScreen: React.FC<{ navigation: any }> = ( ) => {
   const { colors } = useTheme();
-
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   return (
     <>
       <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
@@ -20,7 +22,7 @@ const WelcomeScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: colors.primary }]}
-          onPress={() => navigation.navigate(Routes.Register)}
+          onPress={() => navigation.navigate(Routes.SignUpScreen)}
         >
           <Text style={[styles.buttonText, { color: colors.textsfirstsscreens }]}>Sign Up</Text>
         </TouchableOpacity>
