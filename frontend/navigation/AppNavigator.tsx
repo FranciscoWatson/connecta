@@ -7,6 +7,7 @@ import Routes from './Routes';
 import HomeScreen from '../screens/HomeScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import { useTheme } from '@react-navigation/native';
+import PostFullScreen from '../screens/PostFullScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,9 +19,7 @@ const AppNavigator: React.FC = () => {
       <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{ headerShown: false }} />
       <Stack.Screen name="LoginStack" component={LoginStack} options={{ headerShown: false }} />
       <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
-      <Stack.Screen 
-  name="SignUpScreen" 
-  component={SignUpScreen} 
+      <Stack.Screen name="SignUpScreen" component={SignUpScreen} 
   options={{
     headerShown: true,
     headerTitle: '',
@@ -32,6 +31,7 @@ const AppNavigator: React.FC = () => {
     headerTintColor: colors.text,  // Color del ícono de la flecha
   }} 
 />
+        <Stack.Screen name="PostFullScreen" component={PostFullScreen} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 };

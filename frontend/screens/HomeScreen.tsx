@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import Routes, { RootStackParamList } from '../navigation/Routes.tsx';
 
-// Ejemplo de publicaciones
+// Example posts data
 const posts = [
   {
     id: '1',
@@ -10,6 +12,8 @@ const posts = [
     userLocation: 'Buenos Aires',
     date: 'September 20, 2024',
     postText: 'On a new project',
+    postImage: require('../assets/images/home-post.jpg'),
+    userImage: require('../assets/images/profile-image.png'),
     liked: false,
     likeCount: 26,
   },
@@ -19,6 +23,8 @@ const posts = [
     userLocation: 'Madrid',
     date: 'September 20, 2024',
     postText: 'Enjoying the sunny day',
+    postImage: require('../assets/images/home-post.jpg'),
+    userImage: require('../assets/images/profile-image.png'),
     liked: true,
     likeCount: 50,
   },
@@ -26,6 +32,7 @@ const posts = [
 
 const HomeScreen: React.FC = () => {
   const { colors } = useTheme();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const renderPost = ({ item }: { item: any }) => (
     <View style={[styles.postContainer, { backgroundColor: colors.background }]}>
@@ -39,21 +46,24 @@ const HomeScreen: React.FC = () => {
         </View>
       </View>
 
-      <Image source={item.postImage} style={styles.postImage} />
+      <TouchableOpacity onPress={() => navigation.navigate(Routes.PostFullScreen, { post: item })}>
+        <Image source={item.postImage} style={styles.postImage} />
+      </TouchableOpacity>
 
       <View style={styles.actionsContainer}>
         <View style={styles.actionButtons}>
           <TouchableOpacity>
-            <Image style={styles.icon} />
+            <Image source={require('../assets/images/icon-favorite.png')} style={styles.icon} />
           </TouchableOpacity>
           <Text style={[styles.likeCount, { color: colors.text }]}>{item.likeCount}</Text>
           <TouchableOpacity>
-            <Image style={styles.icon} />
+            <Image source={require('../assets/images/icon-comments.png')} style={styles.icon} />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image source={require('../assets/images/bookmark.png')} style={styles.icon} />
           </TouchableOpacity>
         </View>
-        <Text style={[styles.postText, { color: colors.text }]}>
-          {item.userName}: {item.postText}
-        </Text>
+        <Text style={[styles.postText, { color: colors.text }]}>{item.userName}: {item.postText}</Text>
       </View>
     </View>
   );
@@ -61,9 +71,13 @@ const HomeScreen: React.FC = () => {
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={[styles.header, { backgroundColor: colors.primaryColor }]}>
-        <Image style={styles.headerIcon} />
+        <TouchableOpacity>
+          <Image source={require('../assets/images/icon-search.png')} style={styles.headerIcon} />
+        </TouchableOpacity>
         <Text style={[styles.headerTitle, { color: colors.textOnPrimary }]}>Home</Text>
-        <Image style={styles.headerIcon} />
+        <TouchableOpacity>
+          <Image source={require('../assets/images/profile-image.png')} style={styles.headerIcon} />
+        </TouchableOpacity>
       </View>
       <FlatList
         data={posts}
@@ -72,7 +86,7 @@ const HomeScreen: React.FC = () => {
         contentContainerStyle={styles.flatList}
       />
       <TouchableOpacity style={[styles.floatingButton, { backgroundColor: colors.primaryColor }]}>
-        <Image style={styles.addIcon} />
+        <Image source={require('../assets/images/icon-add-post.png')} style={styles.addIcon} />
       </TouchableOpacity>
     </View>
   );
@@ -80,33 +94,28 @@ const HomeScreen: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     paddingVertical: 10,
+    alignItems: 'center',
   },
   headerTitle: { fontSize: 20, fontWeight: 'bold' },
-  headerIcon: { width: 30, height: 30 },
-
+  headerIcon: { width: 24, height: 24 },
   flatList: { paddingHorizontal: 10 },
-
   postContainer: { marginBottom: 20, borderRadius: 10, overflow: 'hidden' },
   userInfo: { flexDirection: 'row', alignItems: 'center', padding: 10 },
   userImage: { width: 40, height: 40, borderRadius: 20, marginRight: 10 },
   userDetails: {},
   userName: { fontSize: 16, fontWeight: 'bold' },
   userLocation: { fontSize: 12 },
-
   postImage: { width: '100%', height: 200 },
-  
   actionsContainer: { padding: 10 },
   actionButtons: { flexDirection: 'row', alignItems: 'center' },
-  icon: { width: 24, height: 24, marginRight: 5 },
-  likeCount: { marginLeft: 5, marginRight: 15 },
+  icon: { width: 24, height: 24, marginHorizontal: 5 },
+  likeCount: { marginLeft: 5 },
   postText: { marginTop: 10 },
-
   floatingButton: {
     position: 'absolute',
     bottom: 20,
