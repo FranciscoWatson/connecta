@@ -1,14 +1,13 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Image, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import Routes, { RootStackParamList } from '../navigation/Routes.tsx';
 import ConnectaHeaderIcon from '../assets/svg/ConnectaHeaderIcon.tsx';
-import Post from '../components/Post.tsx';  // Asegúrate de importar el componente Post
+import Post from '../components/Post.tsx';
 import SearchIcon from '../assets/svg/SearchIcon.tsx';
 import HomeIcon from '../assets/svg/HomeIcon.tsx';
+import AddPostIcon from '../assets/svg/AddPostIcon.tsx';
 
-// Datos de ejemplo
 const posts = [
   {
     id: '1',
@@ -16,7 +15,14 @@ const posts = [
     userLocation: 'Buenos Aires',
     date: 'September 20, 2024',
     postText: 'On a new project',
-    postImage: require('../assets/images/home-post.jpg'),
+    postImages: [
+      require('../assets/images/home-post.jpg'),
+      require('../assets/images/home-post.jpg'),
+      require('../assets/images/home-post.jpg'),
+      require('../assets/images/home-post.jpg'),
+      require('../assets/images/home-post.jpg'),
+      require('../assets/images/home-post.jpg'),  // Otra imagen del post
+    ],
     userImage: require('../assets/images/profile-image.png'),
     liked: false,
     likeCount: 26,
@@ -27,22 +33,25 @@ const posts = [
     userLocation: 'Madrid',
     date: 'September 20, 2024',
     postText: 'Enjoying the sunny day',
-    postImage: require('../assets/images/home-post.jpg'),
+    postImages: [
+      require('../assets/images/home-post.jpg'),
+      require('../assets/images/home-post.jpg'),
+    ],
     userImage: require('../assets/images/profile-image.png'),
     liked: true,
     likeCount: 50,
   },
 ];
 
+
 const HomeScreen: React.FC = () => {
   const { colors } = useTheme();
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const renderPost = ({ item }: { item: any }) => (
-    <Post post={item} />  // Utiliza el componente Post
+    <Post post={item} />
   );
 
-  // Agregamos un separador entre los posts
   const renderSeparator = () => (
     <View style={[styles.separator, { backgroundColor: colors.separator }]} />
   );
@@ -50,29 +59,30 @@ const HomeScreen: React.FC = () => {
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={[styles.header, { backgroundColor: colors.primaryColor }]}>
-        <TouchableOpacity>
-          <ConnectaHeaderIcon fill={colors.background} width={30} height={30} style={styles.headerIcon} />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <SearchIcon fill={colors.background} width={30} height={30} style={styles.headerIcon} />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <HomeIcon fill={colors.background} width={30} height={30} style={styles.headerIcon} />
-        </TouchableOpacity>
-        <View>
+        <View style={styles.headerLeft}>
           <TouchableOpacity>
-            <Image source={require('../assets/images/profile-image.png')} style={styles.headerIcon} />
+            <ConnectaHeaderIcon fill={colors.background} width={30} height={30} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.headerRight}>
+          <TouchableOpacity>
+            <SearchIcon fill={colors.background} width={30} height={30} style={styles.iconSpacing} />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image source={require('../assets/images/profile-image.png')} style={styles.profileImage} />
           </TouchableOpacity>
         </View>
       </View>
+
       <FlatList
         data={posts}
         renderItem={renderPost}
         keyExtractor={(item) => item.id}
-        ItemSeparatorComponent={renderSeparator} // Agregamos el separador aquí
+        ItemSeparatorComponent={renderSeparator}
       />
+
       <TouchableOpacity style={[styles.floatingButton, { backgroundColor: colors.primaryColor }]}>
-        <Image source={require('../assets/images/icon-add-post.png')} style={styles.addIcon} />
+        <AddPostIcon style={styles.addIcon} fill={colors.background} />
       </TouchableOpacity>
     </View>
   );
@@ -87,9 +97,23 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     alignItems: 'center',
   },
-  headerTitle: { fontSize: 20, fontWeight: 'bold' },
-  headerIcon: { width: 24, height: 24 },
-
+  headerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  headerRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  iconSpacing: {
+    marginLeft: 30, // Separación entre los iconos
+  },
+  profileImage: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    marginLeft: 30, // Espaciado entre la imagen de perfil y los demás iconos
+  },
   floatingButton: {
     position: 'absolute',
     bottom: 20,
