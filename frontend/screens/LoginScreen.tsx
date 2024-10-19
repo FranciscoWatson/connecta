@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, StatusBar }
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import Routes, { RootStackParamList } from '../navigation/Routes';
 import { useTheme } from '../context/ThemeContext';
+import ShowPasswordIcon from '../assets/svg/ShowPasswordIcon';
 
 const LoginScreen: React.FC = () => {
   const { colors } = useTheme();
@@ -33,11 +34,8 @@ const LoginScreen: React.FC = () => {
             secureTextEntry={!showPassword}  // Cambia si la contraseña se muestra o no
           />
           {/* Icono para mostrar/ocultar contraseña */}
-          <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.icon}>
-            <Image
-              source={require('../assets/images/eye-password.png')}
-              style={styles.eyeIcon} // Ajustamos el estilo del ícono
-            />
+          <TouchableOpacity style={styles.iconContainer} onPress={() => setShowPassword(!showPassword)}>
+            <ShowPasswordIcon width={24} height={24} style={styles.icon}/>
           </TouchableOpacity>
         </View>
 
@@ -72,18 +70,44 @@ const LoginScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 },
   logo: { width: 150, height: 150, marginBottom: 40 },
-  input: { width: '100%', padding: 15, borderRadius: 10, marginBottom: 20, fontSize: 16 },
+  input: { 
+    width: '100%', 
+    padding: 15, 
+    borderRadius: 10, 
+    marginBottom: 20, 
+    fontSize: 16 
+  },
   
-  passwordContainer: { width: '100%', flexDirection: 'row', alignItems: 'center', marginBottom: 20 },
-  passwordInput: { flex: 1, paddingRight: 45 },  // Ajusta el padding para que el ícono no cubra el texto
-  icon: { position: 'absolute', right: 15 },  // Ícono en la derecha del campo de texto
-  
-  eyeIcon: { width: 24, height: 24, tintColor: '#A0A0A0' },  // Ajusta el tamaño del ícono y el color si es necesario
+  passwordContainer: { 
+    width: '100%', 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    marginBottom: 20, 
+    position: 'relative', // Para controlar la posición del ícono
+  },
+  passwordInput: { 
+    flex: 1, 
+    paddingRight: 45 // Espacio para que el ícono no cubra el texto
+  },
+  iconContainer: {
+    position: 'absolute',
+    right: 15,  // Posiciona el ícono al lado derecho del contenedor
+    padding: 10,
+  },
+  icon: { 
+    // El estilo del ícono ya está contenido en el contenedor
+  },
   
   forgotPasswordContainer: { alignSelf: 'flex-end', marginBottom: 20 },
   forgotPassword: { textAlign: 'right' },
   
-  button: { width: '100%', padding: 15, borderRadius: 10, alignItems: 'center', marginBottom: 20 },
+  button: { 
+    width: '100%', 
+    padding: 15, 
+    borderRadius: 10, 
+    alignItems: 'center', 
+    marginBottom: 20 
+  },
   buttonText: { fontSize: 18, fontWeight: 'bold' },
   
   googleButton: {
