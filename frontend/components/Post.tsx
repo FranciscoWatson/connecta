@@ -1,10 +1,13 @@
-// Post.tsx
-
 import React, { useState, useRef } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions, FlatList } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 import { useNavigation } from '@react-navigation/native';
 import Routes from '../navigation/Routes.tsx';
+import LikesIcon from '../assets/svg/LikesIcon.tsx';
+import CommentsIcon from '../assets/svg/CommentsIcon.tsx';
+import BookmarkIcon from '../assets/svg/BookmarkIcon.tsx';
+import CarrouselPointIcon from '../assets/svg/CarrouselPointIcon.tsx';
+
 
 const { width: deviceWidth } = Dimensions.get('window');
 
@@ -130,12 +133,12 @@ const Post: React.FC<PostProps> = ({ post }) => {
       <View style={styles.actionsContainer}>
         <View style={styles.leftActions}>
           {/* Contenedor de corazón y comentarios */}
-          <TouchableOpacity>
-            <Image source={require('../assets/images/icon-favorite.png')} style={styles.icon} />
+          <TouchableOpacity >
+            <LikesIcon style={styles.icon}  width={20} height={20} />
           </TouchableOpacity>
           <Text style={[styles.likeCount, { color: colors.text }]}>{post.likeCount}</Text>
           <TouchableOpacity onPress={handleViewComments}>
-            <Image source={require('../assets/images/icon-comments.png')} style={styles.icon} />
+            <CommentsIcon style={styles.icon} width={20} height={20}  />
           </TouchableOpacity>
         </View>
 
@@ -146,7 +149,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
 
         <View style={styles.rightAction}>
           <TouchableOpacity>
-            <Image source={require('../assets/images/bookmark.png')} style={styles.icon} />
+            <BookmarkIcon style={styles.icon} />
           </TouchableOpacity>
         </View>
       </View>

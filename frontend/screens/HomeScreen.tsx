@@ -60,9 +60,7 @@ const HomeScreen: React.FC = () => {
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={[styles.header, { backgroundColor: colors.primaryColor }]}>
         <View style={styles.headerLeft}>
-          <TouchableOpacity>
             <ConnectaHeaderIcon fill={colors.background} width={30} height={30} />
-          </TouchableOpacity>
         </View>
         <View style={styles.headerRight}>
           <TouchableOpacity>
