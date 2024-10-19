@@ -1,19 +1,23 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 import { useNavigation } from '@react-navigation/native';
 import Routes from '../navigation/Routes.tsx';
 
+const { width: deviceWidth } = Dimensions.get('window');
+
 interface PostProps {
   post: any;
+  isFullScreen?: boolean;
 }
 
-const Post: React.FC<PostProps> = ({ post }) => {
+const Post: React.FC<PostProps> = ({ post, isFullScreen = false }) => {
   const { colors } = useTheme();
   const navigation = useNavigation();
 
   return (
     <View style={[styles.postContainer, { backgroundColor: colors.background }]}>
+      {/* Barra superior con información del usuario */}
       <View style={styles.userInfo}>
         <Image source={post.userImage} style={styles.userImage} />
         <View style={styles.userDetails}>
@@ -24,19 +28,27 @@ const Post: React.FC<PostProps> = ({ post }) => {
         </View>
       </View>
 
-      <TouchableOpacity onPress={() => navigation.navigate(Routes.PostFullScreen, { post })}>
-        <Image source={post.postImage} style={styles.postImage} />
-      </TouchableOpacity>
+      {/* Imagen del post */}
+      {isFullScreen ? (
+        <Image source={post.postImage} style={[styles.postImage]} />
+      ) : (
+        <TouchableOpacity onPress={() => navigation.navigate(Routes.PostFullScreen, { post })}>
+          <Image source={post.postImage} style={styles.postImage} />
+        </TouchableOpacity>
+      )}
 
+      {/* Botones de acción */}
       <View style={styles.actionsContainer}>
         <View style={styles.actionButtons}>
-          <TouchableOpacity>
-            <Image source={require('../assets/images/icon-favorite.png')} style={styles.icon} />
-          </TouchableOpacity>
-          <Text style={[styles.likeCount, { color: colors.text }]}>{post.likeCount}</Text>
-          <TouchableOpacity>
-            <Image source={require('../assets/images/icon-comments.png')} style={styles.icon} />
-          </TouchableOpacity>
+          <View style={styles.leftActions}>
+            <TouchableOpacity>
+              <Image source={require('../assets/images/icon-favorite.png')} style={styles.icon} />
+            </TouchableOpacity>
+            <Text style={[styles.likeCount, { color: colors.text }]}>{post.likeCount}</Text>
+            <TouchableOpacity>
+              <Image source={require('../assets/images/icon-comments.png')} style={styles.icon} />
+            </TouchableOpacity>
+          </View>
           <TouchableOpacity>
             <Image source={require('../assets/images/bookmark.png')} style={styles.icon} />
           </TouchableOpacity>
@@ -50,15 +62,38 @@ const Post: React.FC<PostProps> = ({ post }) => {
 };
 
 const styles = StyleSheet.create({
-  postContainer: { marginBottom: 20, borderRadius: 10, overflow: 'hidden' },
-  userInfo: { flexDirection: 'row', alignItems: 'center', padding: 10 },
+  postContainer: {
+    marginBottom: 20,
+  },
+  userInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    width: deviceWidth,
+  },
   userImage: { width: 40, height: 40, borderRadius: 20, marginRight: 10 },
-  userDetails: {},
+  userDetails: {
+    flex: 1,
+  },
   userName: { fontSize: 16, fontWeight: 'bold' },
-  userLocation: { fontSize: 12 },
-  postImage: { width: '100%', height: 200 },
-  actionsContainer: { padding: 10 },
-  actionButtons: { flexDirection: 'row', alignItems: 'center' },
+  userLocation: { fontSize: 12, color: '#888' },
+  postImage: {
+    width: deviceWidth, // Centrado y ocupando todo el ancho
+    height: 300,
+    resizeMode: 'cover',
+    marginHorizontal: 0, // Eliminamos cualquier margen
+  },
+  actionsContainer: { paddingHorizontal: 10, paddingVertical: 5 },
+  actionButtons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  leftActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   icon: { width: 24, height: 24, marginHorizontal: 5 },
   likeCount: { marginLeft: 5 },
   postText: { marginTop: 10 },

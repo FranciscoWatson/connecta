@@ -1,5 +1,3 @@
-// HomeScreen.tsx
-
 import React from 'react';
 import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
@@ -46,19 +44,24 @@ const HomeScreen: React.FC = () => {
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={[styles.header, { backgroundColor: colors.primaryColor }]}>
         <TouchableOpacity>
-          <ConnectaHeaderIcon fill={colors.background} width={30} height={30} />
-          <Image source={require('../assets/images/icon-search.png')} style={styles.headerIcon} />
+          <ConnectaHeaderIcon fill={colors.background} width={30} height={30} style= {styles.headerIcon} />
         </TouchableOpacity>
-        <Text style={[styles.headerTitle, { color: colors.textOnPrimary }]}>Home</Text>
         <TouchableOpacity>
-          <Image source={require('../assets/images/profile-image.png')} style={styles.headerIcon} />
+          <SearchIcon fill={colors.background} width={30} height={30} style= {styles.headerIcon} />
         </TouchableOpacity>
+        <TouchableOpacity>
+          <HomeIcon fill={colors.background} width={30} height={30} style= {styles.headerIcon} />
+        </TouchableOpacity>
+        <View>
+        <TouchableOpacity>
+            <Image source={require('../assets/images/profile-image.png')} style={styles.headerIcon} />
+        </TouchableOpacity>
+        </View>
       </View>
       <FlatList
         data={posts}
         renderItem={renderPost}
         keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.flatList}
       />
       <TouchableOpacity style={[styles.floatingButton, { backgroundColor: colors.primaryColor }]}>
         <Image source={require('../assets/images/icon-add-post.png')} style={styles.addIcon} />
@@ -78,7 +81,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: { fontSize: 20, fontWeight: 'bold' },
   headerIcon: { width: 24, height: 24 },
-  flatList: { paddingHorizontal: 10 },
+
   floatingButton: {
     position: 'absolute',
     bottom: 20,

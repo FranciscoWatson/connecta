@@ -83,16 +83,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     alignItems: 'center', 
     marginBottom: 20, 
-    position: 'relative', // Para controlar la posición del ícono
+    position: 'relative',
   },
   passwordInput: { 
     flex: 1, 
-    paddingRight: 45 // Espacio para que el ícono no cubra el texto
+    paddingRight: 45
   },
   iconContainer: {
     position: 'absolute',
-    right: 15,  // Posiciona el ícono al lado derecho del contenedor
-    padding: 10,
+    right: 15,
+    paddingBottom: 20,
   },
   icon: { 
     // El estilo del ícono ya está contenido en el contenedor
