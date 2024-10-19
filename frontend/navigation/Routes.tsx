@@ -9,7 +9,7 @@ export type RootStackParamList = {
   LoginStack: undefined;
   SignUpScreen: undefined;
   HomeScreen: undefined;
-  PostFullScreen: undefined;
+  PostFullScreen: { post: any };
 };
 
 enum Routes {
