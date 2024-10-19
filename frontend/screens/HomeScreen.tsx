@@ -5,6 +5,9 @@ import { useNavigation, NavigationProp } from '@react-navigation/native';
 import Routes, { RootStackParamList } from '../navigation/Routes.tsx';
 import ConnectaHeaderIcon from '../assets/svg/ConnectaHeaderIcon.tsx';
 import Post from '../components/Post.tsx';  // Asegúrate de importar el componente Post
+import SearchIcon from '../assets/svg/SearchIcon.tsx';
+import HomeIcon from '../assets/svg/HomeIcon.tsx';
+
 
 // Datos de ejemplo
 const posts = [
