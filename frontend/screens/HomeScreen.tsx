@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, Dimensions } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import Routes, { RootStackParamList } from '../navigation/Routes.tsx';
@@ -7,7 +7,6 @@ import ConnectaHeaderIcon from '../assets/svg/ConnectaHeaderIcon.tsx';
 import Post from '../components/Post.tsx';  // Asegúrate de importar el componente Post
 import SearchIcon from '../assets/svg/SearchIcon.tsx';
 import HomeIcon from '../assets/svg/HomeIcon.tsx';
-
 
 // Datos de ejemplo
 const posts = [
@@ -43,28 +42,34 @@ const HomeScreen: React.FC = () => {
     <Post post={item} />  // Utiliza el componente Post
   );
 
+  // Agregamos un separador entre los posts
+  const renderSeparator = () => (
+    <View style={[styles.separator, { backgroundColor: colors.separator }]} />
+  );
+
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={[styles.header, { backgroundColor: colors.primaryColor }]}>
         <TouchableOpacity>
-          <ConnectaHeaderIcon fill={colors.background} width={30} height={30} style= {styles.headerIcon} />
+          <ConnectaHeaderIcon fill={colors.background} width={30} height={30} style={styles.headerIcon} />
         </TouchableOpacity>
         <TouchableOpacity>
-          <SearchIcon fill={colors.background} width={30} height={30} style= {styles.headerIcon} />
+          <SearchIcon fill={colors.background} width={30} height={30} style={styles.headerIcon} />
         </TouchableOpacity>
         <TouchableOpacity>
-          <HomeIcon fill={colors.background} width={30} height={30} style= {styles.headerIcon} />
+          <HomeIcon fill={colors.background} width={30} height={30} style={styles.headerIcon} />
         </TouchableOpacity>
         <View>
-        <TouchableOpacity>
+          <TouchableOpacity>
             <Image source={require('../assets/images/profile-image.png')} style={styles.headerIcon} />
-        </TouchableOpacity>
+          </TouchableOpacity>
         </View>
       </View>
       <FlatList
         data={posts}
         renderItem={renderPost}
         keyExtractor={(item) => item.id}
+        ItemSeparatorComponent={renderSeparator} // Agregamos el separador aquí
       />
       <TouchableOpacity style={[styles.floatingButton, { backgroundColor: colors.primaryColor }]}>
         <Image source={require('../assets/images/icon-add-post.png')} style={styles.addIcon} />
@@ -97,6 +102,12 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   addIcon: { width: 30, height: 30 },
+
+  separator: {
+    height: 1,
+    width: '100%',
+    marginVertical: 10,
+  },
 });
 
 export default HomeScreen;

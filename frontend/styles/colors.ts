@@ -8,6 +8,7 @@ export const LightModeColors = {
   background: '#F0F0F0',  // Fondo gris claro para áreas secundarias
   textOnPrimary: '#F0F0F0',  // Texto blanco en la pantalla de Splash
   splashBackgroundColor: '#22577A',
+  separator: '#CCCCCC'
 };
 
 export const DarkModeColors = {
@@ -20,6 +21,7 @@ export const DarkModeColors = {
   background: '#141414',  // Fondo negro suave para el modo oscuro
   textOnPrimary: '#141414',  // Texto oscuro sobre el botón primario
   splashBackgroundColor: '#22577A',
+  separator: '#333333'
 };
 
 export const BlackWhiteColors = {

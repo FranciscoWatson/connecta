@@ -1,3 +1,5 @@
+// Post.tsx
+
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
@@ -8,12 +10,19 @@ const { width: deviceWidth } = Dimensions.get('window');
 
 interface PostProps {
   post: any;
-  isFullScreen?: boolean;
 }
 
-const Post: React.FC<PostProps> = ({ post, isFullScreen = false }) => {
+const Post: React.FC<PostProps> = ({ post }) => {
   const { colors } = useTheme();
   const navigation = useNavigation();
+
+  const handleNavigateToPostFullScreen = () => {
+    navigation.navigate(Routes.PostFullScreen, { post });
+  };
+
+  const handleViewComments = () => {
+   // navigation.navigate(Routes.CommentsScreen, { postId: post.id });
+  };
 
   return (
     <View style={[styles.postContainer, { backgroundColor: colors.background }]}>
@@ -29,13 +38,9 @@ const Post: React.FC<PostProps> = ({ post, isFullScreen = false }) => {
       </View>
 
       {/* Imagen del post */}
-      {isFullScreen ? (
-        <Image source={post.postImage} style={[styles.postImage]} />
-      ) : (
-        <TouchableOpacity onPress={() => navigation.navigate(Routes.PostFullScreen, { post })}>
-          <Image source={post.postImage} style={styles.postImage} />
-        </TouchableOpacity>
-      )}
+      <TouchableOpacity onPress={handleNavigateToPostFullScreen}>
+        <Image source={post.postImage} style={styles.postImage} />
+      </TouchableOpacity>
 
       {/* Botones de acción */}
       <View style={styles.actionsContainer}>
@@ -45,7 +50,7 @@ const Post: React.FC<PostProps> = ({ post, isFullScreen = false }) => {
               <Image source={require('../assets/images/icon-favorite.png')} style={styles.icon} />
             </TouchableOpacity>
             <Text style={[styles.likeCount, { color: colors.text }]}>{post.likeCount}</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleViewComments}>
               <Image source={require('../assets/images/icon-comments.png')} style={styles.icon} />
             </TouchableOpacity>
           </View>
@@ -53,8 +58,9 @@ const Post: React.FC<PostProps> = ({ post, isFullScreen = false }) => {
             <Image source={require('../assets/images/bookmark.png')} style={styles.icon} />
           </TouchableOpacity>
         </View>
+        {/* Aquí hacemos que el nombre del usuario en la descripción sea más destacable */}
         <Text style={[styles.postText, { color: colors.text }]}>
-          {post.userName}: {post.postText}
+          <Text style={styles.postUserName}>{post.userName}</Text>: {post.postText}
         </Text>
       </View>
     </View>
@@ -97,6 +103,10 @@ const styles = StyleSheet.create({
   icon: { width: 24, height: 24, marginHorizontal: 5 },
   likeCount: { marginLeft: 5 },
   postText: { marginTop: 10 },
+  // Nuevo estilo para el nombre de usuario en la descripción del post
+  postUserName: {
+    fontWeight: 'bold',
+  },
 });
 
 export default Post;

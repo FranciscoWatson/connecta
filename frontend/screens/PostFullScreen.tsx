@@ -16,11 +16,6 @@ const PostFullScreen: React.FC<PostFullScreenProps> = ({ route }) => {
   const navigation = useNavigation();
   const { post } = route.params;
 
-  const handleViewComments = () => {
-    // Lógica para manejar la visualización de comentarios
-    //navigation.navigate(Routes.CommentsScreen, { postId: post.id });
-  };
-
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={[styles.header, { backgroundColor: colors.primaryColor }]}>
@@ -31,15 +26,8 @@ const PostFullScreen: React.FC<PostFullScreenProps> = ({ route }) => {
       </View>
 
       {/* Reutilizamos el componente Post */}
-      <Post post={post} isFullScreen />
+      <Post post={post} />
 
-      {/* Botón para ver comentarios */}
-      <TouchableOpacity
-        style={[styles.commentsButton, { backgroundColor: colors.primaryColor }]}
-        onPress={handleViewComments}
-      >
-        <Text style={[styles.commentsButtonText, { color: colors.textOnPrimary }]}>Ver comentarios</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -54,16 +42,6 @@ const styles = StyleSheet.create({
   },
   backIcon: { width: 30, height: 30 },
   headerTitle: { fontSize: 18, marginLeft: 10, fontWeight: 'bold' },
-  commentsButton: {
-    margin: 20,
-    padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-  },
-  commentsButtonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
 });
 
 export default PostFullScreen;
