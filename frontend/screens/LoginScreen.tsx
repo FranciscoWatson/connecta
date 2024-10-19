@@ -45,7 +45,7 @@ const LoginScreen: React.FC = () => {
           <Text style={[styles.forgotPassword, { color: colors.text }]}>Forgot password?</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.button, { backgroundColor: colors.primaryColor }]}>
+        <TouchableOpacity onPress={() => navigation.navigate(Routes.HomeScreen)} style={[styles.button, { backgroundColor: colors.primaryColor }]}>
           <Text style={[styles.buttonText, { color: colors.textOnPrimary }]}>Login</Text>
         </TouchableOpacity>
 
