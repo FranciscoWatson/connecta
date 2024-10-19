@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from 'react
 import { useTheme } from '../context/ThemeContext';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import Routes, { RootStackParamList } from '../navigation/Routes.tsx';
+import ConnectaHeaderIcon from '../assets/svg/ConnectaHeaderIcon.tsx';
 
 // Example posts data
 const posts = [
@@ -71,7 +72,9 @@ const HomeScreen: React.FC = () => {
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={[styles.header, { backgroundColor: colors.primaryColor }]}>
+        
         <TouchableOpacity>
+          <ConnectaHeaderIcon fill={colors.background} width={30} height={30}/>
           <Image source={require('../assets/images/icon-search.png')} style={styles.headerIcon} />
         </TouchableOpacity>
         <Text style={[styles.headerTitle, { color: colors.textOnPrimary }]}>Home</Text>
@@ -86,8 +89,10 @@ const HomeScreen: React.FC = () => {
         contentContainerStyle={styles.flatList}
       />
       <TouchableOpacity style={[styles.floatingButton, { backgroundColor: colors.primaryColor }]}>
+        
         <Image source={require('../assets/images/icon-add-post.png')} style={styles.addIcon} />
       </TouchableOpacity>
+      
     </View>
   );
 };
